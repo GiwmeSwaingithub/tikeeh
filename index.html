@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIVULI - Daily Motivation App | Terms & Privacy</title>
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/color/96/000000/star.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            color: #e65100;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #ff9800, #ffb74d);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo-icon {
+            font-size: 3rem;
+            margin-right: 15px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
+        
+        .developer-info {
+            background-color: rgba(255, 255, 255, 0.15);
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            margin-top: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-tabs {
+            display: flex;
+            background-color: #fff8f0;
+            border-bottom: 1px solid #ffe0b2;
+            overflow-x: auto;
+        }
+        
+        .tab-btn {
+            padding: 18px 30px;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ef6c00;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-btn:hover {
+            color: #e65100;
+            background-color: rgba(255, 152, 0, 0.05);
+        }
+        
+        .tab-btn.active {
+            color: #e65100;
+            border-bottom: 3px solid #ff9800;
+            background-color: white;
+        }
+        
+        .content {
+            padding: 40px;
+            min-height: 600px;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h2 {
+            color: #e65100;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #ffe0b2;
+        }
+        
+        h3 {
+            color: #f57c00;
+            font-size: 1.5rem;
+            margin: 30px 0 15px;
+        }
+        
+        h4 {
+            color: #ff9800;
+            font-size: 1.2rem;
+            margin: 20px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 18px;
+            font-size: 1.05rem;
+            color: #4e3b2c;
+        }
+        
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 25px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+            color: #4e3b2c;
+        }
+        
+        .highlight-box {
+            background-color: #fff8f0;
+            border-left: 4px solid #ff9800;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .warning-box {
+            background-color: #fff3e0;
+            border-left: 4px solid #f57c00;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .contact-card {
+            background: linear-gradient(135deg, #fff8f0 0%, #ffe0b2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+            border: 1px solid #ffcc80;
+        }
+        
+        .contact-card h3 {
+            color: #e65100;
+            margin-top: 0;
+        }
+        
+        .email-link {
+            display: inline-block;
+            background-color: #ff9800;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .email-link:hover {
+            background-color: #e65100;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(230, 81, 0, 0.3);
+        }
+        
+        .last-updated {
+            text-align: center;
+            padding: 20px;
+            color: #ef6c00;
+            font-size: 0.95rem;
+            border-top: 1px solid #ffe0b2;
+            background-color: #fff8f0;
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .app-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .app-feature {
+            flex: 1;
+            min-width: 250px;
+            background-color: #fff8f0;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #ffcc80;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #ff9800;
+        }
+        
+        .app-feature h4 {
+            color: #e65100;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #ef6c00;
+            font-size: 0.9rem;
+            margin-top: 40px;
+            border-top: 1px solid #ffe0b2;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 15px;
+            }
+            
+            header {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab-btn {
+                padding: 15px 20px;
+                flex: 1;
+                min-width: 140px;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #ff9800;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 100;
+            border: none;
+        }
+        
+        .print-btn:hover {
+            background-color: #e65100;
+            transform: scale(1.1);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background-color: #f57c00;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 100;
+            border: none;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: #e65100;
+            transform: scale(1.1);
+        }
+
+        strong {
+            color: #e65100;
+        }
+
+        a {
+            color: #f57c00;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">✨</div>
+                <div>
+                    <h1>KIVULI</h1>
+                    <div class="subtitle">Daily Motivation & Inspiration App - Terms & Privacy Policy</div>
+                </div>
+            </div>
+            <div class="developer-info">
+                <strong>Developer:</strong> kivulideveloper | <strong>Package:</strong> com.kivuli.kivuli | <strong>Support:</strong> kivulideveloperemail@gmail.com
+            </div>
+        </header>
+        
+        <div class="nav-tabs">
+            <button class="tab-btn active" data-tab="terms">Terms of Service</button>
+            <button class="tab-btn" data-tab="privacy">Privacy Policy</button>
+            <button class="tab-btn" data-tab="data">Data Safety</button>
+            <button class="tab-btn" data-tab="app">About KIVULI</button>
+            <button class="tab-btn" data-tab="contact">Contact Developer</button>
+        </div>
+        
+        <div class="content">
+            <!-- Terms of Service Tab -->
+            <div id="terms" class="tab-content active">
+                <h2>Terms of Service</h2>
+                <div class="last-updated">Last Updated: March 26, 2026</div>
+                
+                <p><strong>These Terms of Service apply to the KIVULI mobile application (package: com.kivuli.kivuli), published on Google Play by kivulideveloper.</strong></p>
+                
+                <h3>1. Acceptance of Terms</h3>
+                <p>By downloading, installing, or using the KIVULI app ("App"), you agree to be bound by these Terms of Service. If you do not agree, please do not use the App.</p>
+                
+                <h3>2. Description of Service</h3>
+                <p>KIVULI is a daily motivation and inspiration application that helps users build positive habits, receive uplifting content, and track emotional wellness. Features include:</p>
+                <ul>
+                    <li>Daily motivational quotes and affirmations</li>
+                    <li>Gratitude journal and mood tracking</li>
+                    <li>Habit streaks and goal reminders</li>
+                    <li>Personalized inspiration feeds</li>
+                    <li>Positive mindset exercises and prompts</li>
+                </ul>
+                
+                <h3>3. Wellness & Mental Health Disclaimer</h3>
+                <div class="warning-box">
+                    <strong>Important Disclaimer:</strong>
+                    <ul>
+                        <li>KIVULI is NOT a medical or mental health treatment device and does not provide therapy, diagnosis, or crisis intervention.</li>
+                        <li>Always seek professional help for mental health concerns. If you are in crisis, contact emergency services or a mental health hotline immediately.</li>
+                        <li>The motivational content is for general inspiration only and should not replace professional psychological advice.</li>
+                        <li>Do not disregard professional medical/mental health advice because of anything you read in this App.</li>
+                    </ul>
+                </div>
+                
+                <h3>4. User Accounts and Data</h3>
+                <ul>
+                    <li>You are responsible for maintaining account confidentiality.</li>
+                    <li>Provide accurate information during registration.</li>
+                    <li>You own all journal entries, mood logs, and personal motivation data you create.</li>
+                    <li>Data is stored locally and optionally synced to secure cloud storage.</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <strong>Data Backup:</strong> Enable cloud sync to preserve your motivation streaks and journal entries. Without sync, uninstalling may result in data loss.
+                </div>
+                
+                <h3>5. Acceptable Use</h3>
+                <p>You agree not to:</p>
+                <ul>
+                    <li>Use the App for any unlawful or harmful purpose</li>
+                    <li>Attempt to reverse engineer or modify the App</li>
+                    <li>Share your account credentials with others</li>
+                    <li>Upload content that is abusive, offensive, or violates others' rights</li>
+                    <li>Use the App to harass or threaten anyone</li>
+                </ul>
+                
+                <h3>6. Responsibility & Safety</h3>
+                <ul>
+                    <li>You acknowledge that building motivation and mindset change involves personal responsibility.</li>
+                    <li>You assume all risks associated with applying motivational content to your life.</li>
+                    <li>The App is not intended for individuals with severe mental health conditions without professional guidance.</li>
+                </ul>
+                
+                <h3>7. User-Generated Content</h3>
+                <ul>
+                    <li>You retain ownership of journal entries, affirmations, and notes you create.</li>
+                    <li>You grant KIVULI a license to store and display your content to provide the service.</li>
+                    <li>We reserve the right to remove content that violates these terms or harms others.</li>
+                </ul>
+                
+                <h3>8. Subscriptions & Payments (if applicable)</h3>
+                <ul>
+                    <li>Some premium motivation features may require subscription.</li>
+                    <li>Subscriptions auto-renew unless canceled before renewal.</li>
+                    <li>Refunds follow Google Play Store policies.</li>
+                </ul>
+                
+                <h3>9. Intellectual Property</h3>
+                <ul>
+                    <li>The App (code, design, quotes library) is owned by kivulideveloper.</li>
+                    <li>Your personal journals remain your property.</li>
+                    <li>You may not reproduce or distribute App content without permission.</li>
+                </ul>
+                
+                <h3>10. Third-Party Services</h3>
+                <p>The App may integrate with third-party services (analytics, cloud storage). Use is subject to their respective terms.</p>
+                
+                <h3>11. Disclaimer of Warranties</h3>
+                <p>The App is provided "AS IS". We do not guarantee that motivation content will produce specific emotional or lifestyle results.</p>
+                
+                <h3>12. Limitation of Liability</h3>
+                <p>To the maximum extent permitted by law, kivulideveloper shall not be liable for any emotional distress, loss of data, or indirect damages arising from use of the App.</p>
+                
+                <h3>13. Indemnification</h3>
+                <p>You agree to indemnify kivulideveloper from any claims arising from your misuse of the App.</p>
+                
+                <h3>14. Changes to Terms</h3>
+                <p>We may update these terms. Continued use after changes constitutes acceptance.</p>
+                
+                <h3>15. Termination</h3>
+                <p>You may delete your account anytime. We may suspend accounts violating terms.</p>
+                
+                <h3>16. Governing Law</h3>
+                <p>These terms are governed by applicable laws.</p>
+                
+                <h3>17. Contact Information</h3>
+                <p>For questions about these Terms: <strong>Email:</strong> <a href="mailto:kivulideveloperemail@gmail.com">kivulideveloperemail@gmail.com</a></p>
+            </div>
+            
+            <!-- Privacy Policy Tab -->
+            <div id="privacy" class="tab-content">
+                <h2>Privacy Policy</h2>
+                <div class="last-updated">Last Updated: March 26, 2026</div>
+                
+                <p><strong>This Privacy Policy applies to KIVULI (package: com.kivuli.kivuli), developed by kivulideveloper. Privacy-related inquiries: kivuliprivacy@gmail.com</strong></p>
+                
+                <h3>Developer & Privacy Contact</h3>
+                <ul>
+                    <li><strong>Developer Name:</strong> kivulideveloper</li>
+                    <li><strong>App Package:</strong> com.kivuli.kivuli</li>
+                    <li><strong>Privacy Email:</strong> <a href="mailto:kivuliprivacy@gmail.com">kivuliprivacy@gmail.com</a></li>
+                    <li><strong>General Support:</strong> kivulideveloperemail@gmail.com</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <strong>Our Commitment:</strong> We respect your privacy. This policy explains what information we collect, why we collect it, and your rights.
+                </div>
+                
+                <h3>1. Information We Collect</h3>
+                <h4>1.1 Personal Information You Provide</h4>
+                <ul>
+                    <li><strong>Account Info:</strong> Name, email, username (encrypted password).</li>
+                    <li><strong>Profile Data:</strong> Preferences, motivation categories, daily goals (optional).</li>
+                    <li><strong>Journal & Mood Entries:</strong> Gratitude logs, affirmations, mood ratings, personal reflections.</li>
+                    <li><strong>Habit Data:</strong> Streak counts, completed daily motivation tasks.</li>
+                </ul>
+                
+                <h4>1.2 Automatically Collected Information</h4>
+                <ul>
+                    <li><strong>Device Info:</strong> Model, OS version, unique identifiers.</li>
+                    <li><strong>Usage Data:</strong> Features used, time spent, daily check-ins.</li>
+                    <li><strong>Crash Logs:</strong> Performance data, IP address (for diagnostics).</li>
+                </ul>
+                
+                <h4>1.3 Information from Third Parties</h4>
+                <ul>
+                    <li>If you sign in via Google, we receive basic profile data (name, email) with your permission.</li>
+                </ul>
+                
+                <h3>2. How We Use Your Information</h3>
+                <ul>
+                    <li><strong>Provide Motivation Features:</strong> Deliver daily quotes, reminders, personalized inspiration.</li>
+                    <li><strong>Improve App:</strong> Analyze usage patterns to enhance content relevance.</li>
+                    <li><strong>Communication:</strong> Send motivational notifications (opt-out anytime).</li>
+                    <li><strong>Security:</strong> Prevent abuse and ensure service stability.</li>
+                </ul>
+                
+                <h3>3. How We Share Your Information</h3>
+                <p><strong>We do NOT sell your personal data.</strong> Sharing occurs only in these cases:</p>
+                <ul>
+                    <li><strong>With Your Consent:</strong> If you connect to social sharing features.</li>
+                    <li><strong>Service Providers:</strong> Cloud storage (encrypted), analytics (Firebase, anonymized).</li>
+                    <li><strong>Legal Obligations:</strong> To comply with law or protect rights.</li>
+                </ul>
+                
+                <h3>4. Data Storage & Security</h3>
+                <ul>
+                    <li><strong>Encryption:</strong> Data in transit via TLS; at rest on secure servers.</li>
+                    <li><strong>Local Storage:</strong> Journals and settings stored on your device.</li>
+                    <li><strong>Cloud Sync:</strong> Optional backup with industry-standard protection.</li>
+                </ul>
+                
+                <h3>5. Data Retention</h3>
+                <ul>
+                    <li>Active accounts: Data retained until account deletion.</li>
+                    <li>Deleted accounts: Data erased within 90 days.</li>
+                    <li>Anonymized analytics may be kept longer for trend analysis.</li>
+                </ul>
+                
+                <h3>6. Your Privacy Rights</h3>
+                <p>Depending on your location (GDPR/CCPA), you have rights to:</p>
+                <ul>
+                    <li>Access your motivational data.</li>
+                    <li>Correct or delete personal information.</li>
+                    <li>Export your journal entries.</li>
+                    <li>Withdraw consent for notifications.</li>
+                </ul>
+                <p>To exercise rights, contact <a href="mailto:kivuliprivacy@gmail.com">kivuliprivacy@gmail.com</a>.</p>
+                
+                <h3>7. Children's Privacy</h3>
+                <p>KIVULI is intended for users 13+. We do not knowingly collect data from children under 13.</p>
+                
+                <h3>8. International Data Transfers</h3>
+                <p>Your data may be processed in countries with different privacy laws. By using the App, you consent to such transfers.</p>
+                
+                <h3>9. California & GDPR Rights</h3>
+                <p>We comply with CCPA (right to know, delete, opt-out of sale) and GDPR (lawful basis: consent, legitimate interest).</p>
+                
+                <h3>10. Changes to This Policy</h3>
+                <p>We will notify users of material changes via in-app notice or email. Continued use indicates acceptance.</p>
+                
+                <h3>11. Contact for Privacy Matters</h3>
+                <div class="contact-card">
+                    <h4>Privacy Officer</h4>
+                    <p><strong>Email:</strong> <a href="mailto:kivuliprivacy@gmail.com">kivuliprivacy@gmail.com</a></p>
+                    <p>We respond to privacy inquiries within 30 days.</p>
+                </div>
+            </div>
+
+            <!-- Data Safety Tab -->
+            <div id="data" class="tab-content">
+                <h2>Data Safety Information</h2>
+                <div class="last-updated">Last Updated: March 26, 2026</div>
+                
+                <p><strong>KIVULI (com.kivuli.kivuli) complies with Google Play Data Safety requirements. Transparency about data collection for this daily motivation app.</strong></p>
+                
+                <h3>Data Collection Summary</h3>
+                <div class="app-info">
+                    <div class="app-feature">
+                        <div class="feature-icon">📝</div>
+                        <h4>Personal & Journal Data</h4>
+                        <ul>
+                            <li>Email & profile info</li>
+                            <li>Mood entries & gratitude logs</li>
+                            <li>Personal affirmations</li>
+                        </ul>
+                    </div>
+                    <div class="app-feature">
+                        <div class="feature-icon">📊</div>
+                        <h4>App Activity</h4>
+                        <ul>
+                            <li>Daily check-in streaks</li>
+                            <li>Feature interactions</li>
+                            <li>Notification engagement</li>
+                        </ul>
+                    </div>
+                    <div class="app-feature">
+                        <div class="feature-icon">🔧</div>
+                        <h4>Device & Diagnostics</h4>
+                        <ul>
+                            <li>Crash logs & performance</li>
+                            <li>Device model & OS</li>
+                            <li>Anonymous usage stats</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h3>How Data Is Used</h3>
+                <ul>
+                    <li><strong>Core functionality:</strong> Deliver daily motivation, track habits, journaling.</li>
+                    <li><strong>Personalization:</strong> Suggest relevant quotes based on mood patterns.</li>
+                    <li><strong>Analytics:</strong> Improve app stability and content relevance.</li>
+                    <li><strong>Communication:</strong> Motivational reminders (user-controlled).</li>
+                </ul>
+                
+                <h3>Data Sharing</h3>
+                <div class="highlight-box">
+                    <strong>No sale of personal data.</strong> We only share anonymized analytics with trusted partners (Firebase) under strict data protection agreements.
+                </div>
+                
+                <h3>Security Practices</h3>
+                <ul>
+                    <li>✅ Data encrypted in transit (TLS)</li>
+                    <li>✅ Encrypted at rest on servers</li>
+                    <li>✅ No plaintext password storage</li>
+                    <li>✅ Regular security reviews</li>
+                </ul>
+                
+                <h3>User Control</h3>
+                <ul>
+                    <li>✅ Delete account anytime → data removal within 90 days</li>
+                    <li>✅ Export journal entries</li>
+                    <li>✅ Opt out of analytics & notifications</li>
+                    <li>✅ Manage device permissions (storage, notifications)</li>
+                </ul>
+                
+                <h3>Data Retention</h3>
+                <ul>
+                    <li><strong>Active accounts:</strong> Data stored until deletion.</li>
+                    <li><strong>Deleted accounts:</strong> Complete erasure within 90 days.</li>
+                    <li><strong>Backups:</strong> Temporary copies removed within 30 days.</li>
+                </ul>
+                
+                <h3>Age Restriction</h3>
+                <div class="warning-box">
+                    <strong>Age 13+ only.</strong> We do not knowingly collect data from children under 13. Contact us if you believe a child’s data is present.
+                </div>
+                
+                <h3>Compliance</h3>
+                <ul>
+                    <li>✅ Google Play Data Safety</li>
+                    <li>✅ GDPR (EU)</li>
+                    <li>✅ CCPA (California)</li>
+                </ul>
+                
+                <p><strong>Privacy questions?</strong> Email <a href="mailto:kivuliprivacy@gmail.com">kivuliprivacy@gmail.com</a></p>
+            </div>
+            
+            <!-- About KIVULI Tab -->
+            <div id="app" class="tab-content">
+                <h2>About KIVULI – Daily Motivation App</h2>
+                <p><strong>KIVULI</strong> (package: com.kivuli.kivuli) is your daily companion for positivity, habit building, and emotional well-being. Whether you need a morning boost, a gratitude nudge, or help staying consistent with self-care, KIVULI delivers uplifting content and tracking tools to brighten every day.</p>
+                
+                <div class="app-info">
+                    <div class="app-feature">
+                        <div class="feature-icon">🌟</div>
+                        <h4>Daily Quotes</h4>
+                        <p>Hand-picked motivational quotes and affirmations to start your day with purpose.</p>
+                    </div>
+                    <div class="app-feature">
+                        <div class="feature-icon">📓</div>
+                        <h4>Gratitude Journal</h4>
+                        <p>Write down things you're grateful for and revisit past entries to see growth.</p>
+                    </div>
+                    <div class="app-feature">
+                        <div class="feature-icon">🔥</div>
+                        <h4>Streak Tracker</h4>
+                        <p>Build lasting motivation habits with daily check-ins and streak rewards.</p>
+                    </div>
+                    <div class="app-feature">
+                        <div class="feature-icon">🎯</div>
+                        <h4>Mood Insights</h4>
+                        <p>Log your mood and receive personalized inspiration based on emotional trends.</p>
+                    </div>
+                    <div class="app-feature">
+                        <div class="feature-icon">🔔</div>
+                        <h4>Smart Reminders</h4>
+                        <p>Gentle notifications to keep you inspired without overwhelming you.</p>
+                    </div>
+                    <div class="app-feature">
+                        <div class="feature-icon">☁️</div>
+                        <h4>Cloud Sync</h4>
+                        <p>Securely backup your journal and streaks across devices (optional).</p>
+                    </div>
+                </div>
+                
+                <h3>Why KIVULI?</h3>
+                <ul>
+                    <li><strong>Science-backed positivity:</strong> Content designed to boost resilience and mindset.</li>
+                    <li><strong>Privacy-first:</strong> Your journal stays private; no data selling.</li>
+                    <li><strong>Minimal & calming design:</strong> No clutter, just motivation.</li>
+                    <li><strong>Offline mode:</strong> Access saved quotes without internet.</li>
+                </ul>
+                
+                <h3>Who is this for?</h3>
+                <ul>
+                    <li>Anyone seeking daily encouragement and self-reflection.</li>
+                    <li>People building positive routines.</li>
+                    <li>Those who want to track moods and gratitude simply.</li>
+                </ul>
+                
+                <h3>Platform & Availability</h3>
+                <div class="highlight-box">
+                    <p><strong>Platform:</strong> Android (Google Play Store)</p>
+                    <p><strong>Package Name:</strong> com.kivuli.kivuli</p>
+                    <p><strong>Min. OS:</strong> Android 6.0+</p>
+                    <p><strong>Languages:</strong> English (more coming soon)</p>
+                </div>
+            </div>
+            
+            <!-- Contact Tab -->
+            <div id="contact" class="tab-content">
+                <h2>Contact the Developer</h2>
+                
+                <div class="contact-card">
+                    <h3>kivulideveloper Team</h3>
+                    <p>Building KIVULI to bring daily motivation to millions.</p>
+                    
+                    <div style="margin: 25px 0;">
+                        <h4>📧 General Support & Feedback:</h4>
+                        <a href="mailto:kivulideveloperemail@gmail.com" class="email-link">kivulideveloperemail@gmail.com</a>
+                        <h4 style="margin-top: 20px;">🔐 Privacy & Data Requests:</h4>
+                        <a href="mailto:kivuliprivacy@gmail.com" class="email-link" style="background-color:#f57c00;">kivuliprivacy@gmail.com</a>
+                    </div>
+                    <p>We read every message and value your input.</p>
+                </div>
+                
+                <h3>What to Include for Faster Help</h3>
+                <ul>
+                    <li><strong>Subject:</strong> [Bug] / [Feature] / [Privacy] / [Support]</li>
+                    <li><strong>Device model & Android version</strong></li>
+                    <li><strong>App version:</strong> Check Settings → About</li>
+                    <li><strong>Steps to reproduce (if bug)</strong></li>
+                    <li><strong>Screenshots (optional)</strong></li>
+                </ul>
+                
+                <h3>Common Inquiries</h3>
+                <ul>
+                    <li><strong>Bug reports:</strong> Crashes, notification issues, sync errors.</li>
+                    <li><strong>Feature ideas:</strong> New quote categories, journal prompts, widgets.</li>
+                    <li><strong>Account deletion:</strong> Send request from registered email.</li>
+                    <li><strong>Subscription refunds:</strong> Handled via Google Play Store.</li>
+                </ul>
+                
+                <h3>Response Times</h3>
+                <ul>
+                    <li>Critical bugs: 24-48h</li>
+                    <li>General support: 2-4 business days</li>
+                    <li>Privacy requests: within 30 days (GDPR/CCPA)</li>
+                </ul>
+                
+                <div class="warning-box">
+                    <strong>IMPORTANT:</strong> KIVULI does not provide crisis counseling. If you are experiencing a mental health emergency, please contact local emergency services or a suicide prevention hotline immediately.
+                </div>
+                
+                <h3>Business / Media</h3>
+                <p>For partnerships or media inquiries: <a href="mailto:kivulideveloperemail@gmail.com">kivulideveloperemail@gmail.com</a> with "Business Inquiry".</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2026 kivulideveloper. All rights reserved.</p>
+            <p>KIVULI (com.kivuli.kivuli) – Daily Motivation App on Google Play. Google Play and the Google Play logo are trademarks of Google LLC.</p>
+            <p style="margin-top: 15px; font-size: 0.85rem; color: #ef6c00;">
+                <strong>Disclaimer:</strong> KIVULI is for inspiration and habit tracking only, not a substitute for professional mental health care.
+            </p>
+        </footer>
+    </div>
+    
+    <button class="print-btn" aria-label="Print this page" title="Print this page">🖨️</button>
+    <button class="back-to-top" aria-label="Back to top" title="Back to top">↑</button>
+    
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                history.pushState(null, null, `#${tabId}`);
+            });
+        });
+        
+        document.querySelector('.print-btn').addEventListener('click', () => window.print());
+        const backBtn = document.querySelector('.back-to-top');
+        backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) backBtn.classList.add('show');
+            else backBtn.classList.remove('show');
+        });
+        
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.substring(1);
+            if (['terms','privacy','data','app','contact'].includes(hash)) {
+                document.querySelector(`[data-tab="${hash}"]`)?.click();
+            }
+            document.querySelector('footer p:first-child').innerHTML = `© ${new Date().getFullYear()} kivulideveloper. All rights reserved.`;
+        });
+        
+        window.addEventListener('popstate', () => {
+            const hash = window.location.hash.substring(1) || 'terms';
+            const btn = document.querySelector(`[data-tab="${hash}"]`);
+            if (btn) btn.click();
+        });
+        
+        window.addEventListener('beforeprint', () => {
+            document.querySelector('.print-btn').style.display = 'none';
+            document.querySelector('.back-to-top').style.display = 'none';
+        });
+        window.addEventListener('afterprint', () => {
+            document.querySelector('.print-btn').style.display = 'flex';
+            document.querySelector('.back-to-top').style.display = 'flex';
+        });
+    </script>
+</body>
+</html>
